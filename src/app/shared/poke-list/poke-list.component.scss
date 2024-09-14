@@ -6,6 +6,7 @@
 :host{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   padding: rem-calc(20) 0;
   .pokemon{
@@ -15,14 +16,19 @@
     height: rem-calc(157 - 40);
     padding: rem-calc(20);
 
+    margin-bottom: rem-calc(10);
     background: var(--branco);
     border-radius: rem-calc(10);
+
+    text-decoration: none;
+    color: var(--primary-color);
 
     &__status{
       h2{
         font-size:rem-calc(22);
         font-style: italic;
         font-weight: 700;
+        text-transform: capitalize;
 
         margin-bottom: rem-calc(10);
       }
@@ -61,7 +67,7 @@
       background: url(../../..//assets/bg/background-list.svg) no-repeat;
 
       img{
-        height:rem-calc(80)
+        height:rem-calc(60)
       }
     }
   }
