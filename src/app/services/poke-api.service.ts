@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +25,12 @@ export class PokeApiService {
   }
 
   public apiGetPokens(url: string): Observable<any> {
-   return this.http.get<any>(url).pipe(map((res) => res));
+    return this.http.get<any>(url).pipe(
+      map((res) => res),
+      catchError((error) => {
+        console.error('Erro na requisição:', error);
+        return throwError(() => error); // Propaga o erro para o subscribe
+      })
+    );
   }
 }
